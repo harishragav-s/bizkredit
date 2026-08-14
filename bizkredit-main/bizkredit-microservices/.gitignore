@@ -1,0 +1,14 @@
+target/
+bin/
+.idea/
+.settings/
+.classpath
+.factorypath
+.project
+*.jar
+*.class
+.DS_Store
+
+# Uploaded document files (sme-loan-service) - real file content from
+# local testing should never be committed to source control
+uploads/

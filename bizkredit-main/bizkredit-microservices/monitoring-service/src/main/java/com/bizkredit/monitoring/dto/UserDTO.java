@@ -1,0 +1,16 @@
+package com.bizkredit.monitoring.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/** Read-only projection of auth-service's User - just enough to validate existence. */
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserDTO {
+    private Long userId;
+    private String status;
+}

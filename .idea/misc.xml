@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/bizkredit-main/bizkredit-microservices/api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/bizkredit-main/bizkredit-microservices/auth-service/pom.xml" />
+        <option value="$PROJECT_DIR$/bizkredit-main/bizkredit-microservices/eureka-server/pom.xml" />
+        <option value="$PROJECT_DIR$/bizkredit-main/bizkredit-microservices/credit-service/pom.xml" />
+        <option value="$PROJECT_DIR$/bizkredit-main/bizkredit-microservices/sme-loan-service/pom.xml" />
+        <option value="$PROJECT_DIR$/bizkredit-main/bizkredit-microservices/collateral-service/pom.xml" />
+        <option value="$PROJECT_DIR$/bizkredit-main/bizkredit-microservices/monitoring-service/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_23" default="true" project-jdk-name="23" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

@@ -1,0 +1,122 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+
+      server:
+        webflux:
+          globalcors:
+            cors-configurations:
+              '[/**]':
+
+                allowedOriginPatterns: "http://localhost:*"
+                allowedMethods:
+                  - GET
+                  - POST
+                  - PUT
+                  - PATCH
+                  - DELETE
+                  - OPTIONS
+                allowedHeaders: "*"
+                allowCredentials: true
+
+          routes:
+
+            - id: auth-service
+              uri: lb://auth-service
+              predicates:
+                - Path=/api/auth/**,/api/users,/api/users/**,/api/user-scopes,/api/user-scopes/**,/api/audit-logs,/api/audit-logs/**
+
+            - id: credit-service-financial-statements
+              uri: lb://credit-service
+              predicates:
+                - Path=/api/loan-applications/*/financial-statements,/api/loan-applications/*/financial-statements/**
+            - id: credit-service-credit-proposals
+              uri: lb://credit-service
+              predicates:
+                - Path=/api/loan-applications/*/credit-proposals,/api/loan-applications/*/credit-proposals/**
+            - id: credit-service-decisions
+              uri: lb://credit-service
+              predicates:
+                - Path=/api/credit-proposals,/api/credit-proposals/**
+            - id: credit-service-scorecards
+              uri: lb://credit-service
+              predicates:
+                - Path=/api/scorecards,/api/scorecards/**
+            - id: credit-service-maker-checker
+              uri: lb://credit-service
+              predicates:
+                - Path=/api/credit-maker-checker,/api/credit-maker-checker/**
+
+
+            - id: collateral-service-collaterals
+              uri: lb://collateral-service
+              predicates:
+                - Path=/api/loan-applications/*/collaterals,/api/loan-applications/*/collaterals/**
+
+
+            - id: monitoring-service-covenants
+              uri: lb://monitoring-service
+              predicates:
+                - Path=/api/facilities/*/covenants,/api/facilities/*/covenants/**
+            - id: monitoring-service-ews
+              uri: lb://monitoring-service
+              predicates:
+                - Path=/api/facilities/*/ews,/api/facilities/*/ews/**
+            - id: monitoring-service-other
+              uri: lb://monitoring-service
+              predicates:
+                - Path=/api/npa,/api/npa/**,/api/covenant-templates,/api/covenant-templates/**,/api/covenants,/api/covenants/**,/api/notifications,/api/notifications/**,/api/portfolio,/api/portfolio/**
+
+
+            - id: collateral-service-facilities
+              uri: lb://collateral-service
+              predicates:
+                - Path=/api/facilities,/api/facilities/**
+            - id: collateral-service-other
+              uri: lb://collateral-service
+              predicates:
+                - Path=/api/repayments,/api/repayments/**,/api/maker-checker,/api/maker-checker/**
+
+
+            - id: sme-loan-service-loan-applications
+              uri: lb://sme-loan-service
+              predicates:
+                - Path=/api/loan-applications,/api/loan-applications/**
+            - id: sme-loan-service-other
+              uri: lb://sme-loan-service
+              predicates:
+                - Path=/api/sme-businesses,/api/sme-businesses/**,/api/loan-products,/api/loan-products/**,/api/documents,/api/documents/**,/api/my-businesses
+
+eureka:
+  client:
+    service-url:
+      # Eureka Server URL
+      defaultZone: http://localhost:8761/eureka/
+
+    # Register Gateway with Eureka
+    register-with-eureka: true
+
+    # Fetch available services from Eureka
+    fetch-registry: true
+
+  instance:
+    prefer-ip-address: false
+    hostname: localhost
+
+# JWT CONFIGURATION
+
+jwt:
+  secret: ${JWT_SECRET:bizkredit-super-secret-key-must-be-at-least-32-chars-long}
+
+# LOGGING CONFIGURATION
+
+logging:
+  level:
+    com.bizkredit: DEBUG
+    org.springframework.cloud.gateway: INFO
