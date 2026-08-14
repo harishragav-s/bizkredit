@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// Generic API response wrapper - all endpoints return this
+// Generic API response wrapper
 @Data
 @Builder
 @NoArgsConstructor

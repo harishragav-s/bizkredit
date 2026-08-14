@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 
-
 @FeignClient(name = "auth-service", configuration = com.bizkredit.sme.config.FeignClientConfig.class)
 public interface AuthServiceClient {
 
